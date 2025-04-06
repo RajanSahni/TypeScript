@@ -171,5 +171,17 @@ function getUser() {
   type GreetParams = Parameters<typeof greeting12>;
 
   const params :GreetParams =['Sumit',13]
+
+
+  class PersonA1 {
+    constructor(public name: string, public age: number) {}
+  }
+  
+  // Get the types of constructor parameters
+  type PersonArgs = ConstructorParameters<typeof PersonA1>;
+  
+  const args: PersonArgs = ['Sumit Sahni', 21];
+const p = new PersonA1(...args);
+
     
   
