@@ -46,7 +46,7 @@ interface User321 {
     age: 76                   // Now required
   };
   
-  // ❌ Error: Property 'email' is missing in type '{}' but required in type 'RequiredUser'.
+  // Error: Property 'email' is missing in type '{}' but required in type 'RequiredUser'.
   // const user2: RequiredUser = { name: "Alice" }; 
   
 
@@ -182,6 +182,23 @@ function getUser() {
   
   const args: PersonArgs = ['Sumit Sahni', 21];
 const p = new PersonA1(...args);
+
+
+
+//Exporting (in mathUtils.ts)
+
+export function add(a: number, b: number) {
+  return a + b;
+}
+
+export const PI = 3.14;
+
+
+// Importing (in app.ts)
+//import { add, PI } from './mathUtils';
+
+console.log(add(5, 2)); // 7
+console.log(PI);        // 3.14
 
     
   
