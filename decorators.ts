@@ -60,6 +60,78 @@ function LogMethod1(target: any, methodName: string, descriptor: PropertyDescrip
   }
 
 
-  
+ 
+/*..............accessor & property  decorator .............*/  
+/*.This code modifies the property on the prototype (Cars.prototype) directly before the instance is created. 
+Then, when you define this in the class:brand: string = 'Tesla';
+TypeScript/JavaScript tries to assign the value 'Tesla' to brand during object construction (in the constructor). 
+But since your decorator has already marked brand as non-writable, the assignment fails — even if you're not reassigning later!
+
+That's why the error is thrown even without the line myCars.brand = 'tata'.
+*/  
+// function Readonly(target:any , propertyKey:string ){
+//     Object.defineProperty(target, propertyKey,{
+//         writable:false
+//     });
+// }
+
+// class Cars{
+//     @Readonly
+//     brand:string='Tesla';
+    
+
+// }
+// const myCars= new Cars();
+// //myCars.brand='tata'
+// console.log(myCars.brand)
+
+
+
+
+
+function Readonly(target:any , propertyKey:string ){
+    Object.defineProperty(target, propertyKey,{
+        writable:false
+    });
+}
+
+class Cars{
+    
+    private _brand:string='Tesla';
+     @Readonly
+    get brand(){
+        return this._brand
+    }
+
+    set brand(value:string){
+        this._brand=value;
+    }
+    
+
+}
+const myCars= new Cars();
+//myCars.brand='tata'
+console.log(myCars.brand)
+
+
+
+/*..............parameter decorator .............*/  
+function LogParameter(target:Object, propertyKey:string, parameterIndex:number){
+    console.log(`Parameter in method ${propertyKey} at index ${parameterIndex}`)
+}
+
+class UserParam{
+    createUser(
+       @LogParameter name:string,
+        @LogParameter age:number
+      ){
+        console.log(`Users:${name},Age:${age}`)
+      }
+}
+
+const useParam =new UserParam();
+useParam.createUser('Diya',20)
+
+
   
  
