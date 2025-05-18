@@ -2,7 +2,7 @@
 // literal types
 // In TypeScript, we can use literal types to specify the exact value a variable can have.  
 // Always try to use literal start with capital letter.
-// string literal 
+// string literal using typescript
 let OredrStatus: "pending" | "completed" | "rejected";
 OredrStatus = "completed"
 
